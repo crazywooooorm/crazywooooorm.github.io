@@ -18,7 +18,7 @@ email: xhgu0115@gmail.com
 description:
   "There is only one heroism in the world: to
   see the world as it is, and to love it."
-baseurl: "xgu_blog" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: crazywooooorm
 linkedin_username: xinghaogu
