@@ -1,0 +1,27 @@
+---
+title: "Simulation on Odds Ratio Conf"
+author: "Xinghao"
+date: "August 23, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## McNemar Test
+McNemar's test is used to test the significance of changes between "before" and "after", especially in those designs where each person is used as their own control. Notice that the population for "before" and "after" tests are same, and in most cases the tests have nominal outputs, so 
+
+## Small & Large Sample Size
+
+## Simulation
+
+Simulation Output:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+
+## Conclusion
+
