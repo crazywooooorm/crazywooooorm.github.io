@@ -1,25 +1,59 @@
 ---
-title: "Simulation on Odds Ratio Conf"
-author: "Xinghao"
+layout: post
+title: "Simple Simulation on Paired Odds Ratio Confidence Interval"
+author: "Xinghao Gu"
 date: "August 23, 2018"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## Paired Data and McNemar's Test
+Paired data is common in experimental designs. Usually, paired data comes from the tests on same individuals at different points in time. A typical example is the measurement from same group of patients before and after they get treatments. In this case, each person is used as their own control. 
 
-## McNemar Test
-McNemar's test is used to test the significance of changes between "before" and "after", especially in those designs where each person is used as their own control. Notice that the population for "before" and "after" tests are same, and in most cases the tests have nominal outputs, so 
+Especially, for nominal paired data, we usually use [McNemar's Test](https://en.wikipedia.org/wiki/McNemar%27s_test) to test the significance of changes between "before" and "after".
 
 ## Small & Large Sample Size
+In a 2 by 2 nominal paired case, suppose we have the experiment result below:
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+result_table <-data.frame("After Negative" = c("A", "C"), 
+                          "After Positive" = c("B", "D"))
+row.names(result_table) <- c("Before Negative", "Before Positive")
+knitr::kable(result_table, align = "c") %>% 
+  kable_styling(full_width = FALSE) %>% 
+  column_spec(1, bold = T)
+```
+
+Notice that A and D are individuals who had no change on test result before and after the treatment, we focus on B and D, which represents two change directions. [Odds ratio](https://en.wikipedia.org/wiki/Odds_ratio) is a good measure for comparing happening chance between two outcomes. In this case, odds ratio is defined as B/C since we don't care about the situations where no changes happend after the treatment:
+
+$$\Psi = \frac B C$$
+[Sahai and Khurshid (1995)](https://www.ncbi.nlm.nih.gov/pubmed/7613560) present two methods for calculating odds ratio confidence interval. 
+
+The first method is based on [Clopper-Pearson interval](https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval), we can get the confidence interval for odds ratio:
+
+$$\Psi_L = \frac {B}{(C+1)F_{\alpha/2, 2C+2, 2B}}$$
+$$\Psi_U = \frac {(B + 1)F_{\alpha/2, 2B+2, 2C}}{C}$$
+
+The second method comes from a delta method. Odds ratio has a highly skewed distribution, so usually people use the log transformation and then transform back to get the confidence interval of odds ratio. Here, we have:
+
+$$\Psi_L = exp(ln(\hat \Psi) - z_{\alpha/2}S_{\hat \Psi})$$
+
+$$\Psi_U = exp(ln(\hat \Psi) + z_{\alpha/2}S_{\hat \Psi})$$
+
+Where 
+$$\hat \Psi = \sqrt{\frac 1 B + \frac 1 C}$$
+
+To test which method is better, I did a simple simulation to test their performance under different sample sizes and original distributions.
 
 ## Simulation
 
 Simulation Output:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+
 ```
 
 
