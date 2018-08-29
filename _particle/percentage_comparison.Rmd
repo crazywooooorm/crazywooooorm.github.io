@@ -43,27 +43,51 @@ data.frame(group1 = c(10, 15, 20, 40, 100),
   rowwise() %>% 
   do(
     data.frame(`Group 1 Size` = .$group1, `Group 2 Size` = .$group2,
-              sim_prop(1000, .$group1, .$group2, 0.5, 0.5)) %>% 
+              sim_prop(1000, .$group1, .$group2, 0.5, 0.5), 
+              check.names = F) %>% 
       bind_rows() 
       
   ) %>% 
   kable(caption = "Simulation on True Percentage is 0.5 and 0.5") %>% 
-  kable_styling(full_width = F, position = "c")
+  kable_styling(full_width = F, position = "c", 
+                bootstrap_options = c("striped", "hover"),
+                font_size = 15)
+```
 
+
+```{r, warning=FALSE, message=FALSE}
 # simulate for (0.4, 0.6)
 data.frame(group1 = c(10, 15, 20, 40, 100),
            group2 = c(30, 15, 20, 40, 100)) %>%
   rowwise() %>% 
   do(
     data.frame(`Group 1 Size` = .$group1, `Group 2 Size` = .$group2,
-              sim_prop(1000, .$group1, .$group2, 0.4, 0.6)) %>% 
+              sim_prop(1000, .$group1, .$group2, 0.4, 0.6), 
+              check.names = F) %>% 
       bind_rows() 
       
   ) %>% 
   kable(caption = "Simulation on True Percentage is 0.4 and 0.6") %>% 
-  kable_styling(full_width = F, position = "c")
-  
+  kable_styling(full_width = F, position = "c", 
+                bootstrap_options = c("striped", "hover"),
+                font_size = 15)
 ```
 
 
-
+```{r, warning=FALSE, message=FALSE}
+# simulate for (0.3, 0.7)
+data.frame(group1 = c(10, 15, 20, 40, 100),
+           group2 = c(30, 15, 20, 40, 100)) %>%
+  rowwise() %>% 
+  do(
+    data.frame(`Group 1 Size` = .$group1, `Group 2 Size` = .$group2,
+              sim_prop(1000, .$group1, .$group2, 0.3, 0.7), 
+              check.names = F) %>% 
+      bind_rows() 
+      
+  ) %>% 
+  kable(caption = "Simulation on True Percentage is 0.3 and 0.7") %>% 
+  kable_styling(full_width = F, position = "c", 
+                bootstrap_options = c("striped", "hover"),
+                font_size = 15)
+```
