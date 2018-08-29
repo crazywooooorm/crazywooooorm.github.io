@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Percentage Test: T or Chi?"
+title: "Percentage Comparison: T or Chi?"
 author: "Xinghao Gu"
 date: "August 29, 2018"
 categories: Statistics
+permalink: "/blogs/percentage-comparison/"
 ---
 If we try to compare two percentage from two independent groups, which test should we use, T-test or Chi-squared test? Suppose we want to test whether the prevalence of overweight is different between men and women. We did an investigation and got the estimated overweight prevalence in both men and women groups, how can we compare the those two estimated prevalence?
 
