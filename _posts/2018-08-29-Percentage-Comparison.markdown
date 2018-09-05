@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Percentage Comparison: T or Chi?"
+title: "Proportion Comparison: T or Chi?"
 author: "Xinghao Gu"
-date: "August 29, 2018"
+date: "August 28, 2018"
 categories: Statistics
-permalink: "/blogs/percentage-comparison/"
+permalink: "/blogs/proportion-comparison/"
 ---
-If we try to compare two percentage from two independent groups, which test should we use, T-test or Chi-squared test? Suppose we want to test whether the prevalence of overweight is different between men and women. We did an investigation and got the estimated overweight prevalence in both men and women groups, how can we compare the those two estimated prevalence?
+If we try to compare two proportions from two independent groups, which test should we use, T-test or Chi-squared test? Suppose we want to test whether the prevalence of overweight is different between men and women. We did an investigation and got the estimated overweight prevalence in both men and women groups, how can we compare those two estimated prevalence?
 
 [Student's t-test](https://en.wikipedia.org/wiki/Student%27s_t-test) is a very popular method to compare population means, while in most cases it only works for numeric data because of one of the assumptions of Students' t-test: The mean follows a normal distribution. In our case, however, we have a binary output for each sample (overweight or not). A more typical method for this situation is [Chi-squared test](https://en.wikipedia.org/wiki/Chi-squared_test).
 
@@ -62,7 +62,7 @@ data.frame(group1 = c(10, 15, 20, 40, 100),
                 font_size = 15)
 {% endhighlight %}
 
-![trial](/assets/post_assets/2018-08-28/5_5.png){:class="img-responsive"}
+{%include /post_include/2018-08-28/05_05.html %}
 
 Next, We check what percentage of 1000 simulations correctly reject the wrong null hypothesis when the true theta is 0.4 and 0.6 (0.3 and 0.7) in two groups.
 
@@ -84,7 +84,7 @@ data.frame(group1 = c(10, 15, 20, 40, 100),
                 font_size = 15)
 {% endhighlight %}
 
-![trial](/assets/post_assets/2018-08-28/4_6.png){:class="img-responsive"}
+{%include /post_include/2018-08-28/04_06.html %}
 
 {% highlight r %}
 # simulate for (0.3, 0.7)
@@ -104,7 +104,7 @@ data.frame(group1 = c(10, 15, 20, 40, 100),
                 font_size = 15)
 {% endhighlight %}
 
-![trial](/assets/post_assets/2018-08-28/3_7.png){:class="img-responsive"}
+{%include /post_include/2018-08-28/03_07.html %}
 
 
 As we can see from the simulation result, when the sample sizes are small, t-test is easier to reject the null hypothesis; while when the sample sizes are big enough in both groups, the test results from those two tests tend to be same. However, since the Chi-squared test has more power than the approximated t-test (hope we would talk about "power" in future), we still recommend using Chi-squared test in this case.
