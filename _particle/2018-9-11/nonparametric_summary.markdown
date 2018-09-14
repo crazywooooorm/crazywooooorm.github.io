@@ -71,3 +71,12 @@ like "No move" would be dropped in McNemar test.
 * In a small sample case, sign test is a binomial test; In a large sample case,
 we can use the normal approximation for that binomial test, while a continuity
 correction for that approximation is needed.
+
+### Wilcoxon Signed-Rank Test
+* Works for at least paired interval data since distance is considered.
+* The mean and variance of rank sum statistic can be calculated easily, then use a normal
+approximation for the total rank statistic.
+
+### Matched Pairs Randomization Test
+* Works for at least paired interval data, but as a permutation test, it 
+doesn't need any assumptions about normality or homogeneity of variance.  
