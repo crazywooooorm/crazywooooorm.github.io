@@ -18,8 +18,8 @@ at once.
 This book has five parts, but for me, most of the useful suggestions come from
 first two parts, which introduces Mckinsey way of thinking about and solving
 business problems. The rest of the book talks about how to work with clients
-and how to make your life easier in Mckinsey. I can't say last three parts are
-helpless, but I think they include too many trivial contents and tell something
+and how to make your life easier in Mckinsey. I can't say last three parts don't
+make sense, but I think they include too many trivial contents and tell something
 that every one knows is correct.   
 
 Below are some points I found interesting from the first two parts of *The
@@ -70,4 +70,4 @@ questions after interviews because they are more relaxed at that time.
 
 **Making Presentation**
 * Do a prewiring with all the relative players before holding a presentation so
-audience wouldn't be too surprised at your presentation. 
+audience wouldn't be too surprised at your presentation.
