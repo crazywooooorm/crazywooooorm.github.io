@@ -33,7 +33,7 @@ mutual_reachability_distance(a, b) = max(
 ```
 现在我们将任意两点间的可达距离作为权重，通过[Prim's algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)构建[minimum spanning tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree)。
 
-{%include /post_include/logic_of_clustering/hdbscan_tree.png %}
+{%include /post_include/logic_of_clustering/hdbscan_tree.html %}
 
 
 
