@@ -19,9 +19,21 @@ GMM和K-Means一样，需要我们指定K，如何在实际中解决这个问题
 
 那么，能不能让算法自己寻找最优的K呢？一种可能的选择是[Mean-Shift](https://en.wikipedia.org/wiki/Mean_shift)。Mean-Shift在样本空间内初始化多个质心，然后让质心不断向其邻域内密度较大的区域移动。这些质心将逐渐靠近并重合，最后剩下的簇就是我们的聚类结果。我们解决了K的问题，但问题来了，怎么定义'邻域'？事实上，Mean-Shift的聚类结果对邻域(半径)的选择很敏感，因此我们的问题依旧没有得到完美的解决。
 
-Mean-Shift对于密度的关注启发我们在Density based算法上更进一步，于是我们有了[DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)。DBSCAN定义了核心点的概念，即如果一个点的邻域eps内有至少minPts个点，则称其为一个核心点。从一个核心点出发，如果其邻域内有其它核心点，则以此继续向外延伸。当所有点都被访问过一遍，我们就得到了聚类的结果，而一些outlier因为邻域密度不够，不会被划归为任何簇。显然DBSCAN已经解决了上文提到的K-Means对outlier敏感的问题。同时，DBSCAN聚类的簇可以为任意形状，具有相当的灵活性。我们唯一剩下的问题就是，如何确定领域参数eps和最小点个数minPts。
+Mean-Shift对于密度的关注启发我们在Density based算法上更进一步，于是我们有了[DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)。DBSCAN定义了核心点的概念，即如果一个点在距离r的邻域内有至少m个点，则称其为一个核心点。从一个核心点出发，如果其邻域内有其它核心点，则以此继续向外延伸。当所有点都被访问过一遍，我们就得到了聚类的结果，而一些outlier因为邻域密度不够，不会被划归为任何簇。显然DBSCAN已经解决了上文提到的K-Means对outlier敏感的问题。同时，DBSCAN聚类的簇可以为任意形状，具有相当的灵活性。我们唯一剩下的问题就是，如何确定邻域的距离参数r和最少点参数m。
 
+在这两个悬而未决的参数中，定义邻域的距离参数毫无疑问更难入手，考虑到数据在不同维度上离散程度的不同，人为选择邻域的大小是极为困难的。因此，为了弥补DBSCAN的不足，我们引入了[Hierarchical clustering](https://en.wikipedia.org/wiki/Hierarchical_clustering)的思想， [HDBSCAN](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html)诞生了。
 
+HDBSCAN首先对上文DBSCAN里的核心点概念做了一修改，我们不再划分核心或非核心点，而是基于最少点参数m，算出每个点的核心距离（core distance），即邻域内包含至少m个点的最短距离。然后，我们定义了可达距离（reachability distance），当两点间的实际距离比任意点的核心距离大时，可达距离即等于实际距离，否则，可达距离等于两点间较大的一个核心距离，公式如下：
+```
+mutual_reachability_distance(a, b) = max(
+    core_distance(a),
+    core_distance(b),
+    distance(a, b)
+)
+```
+现在我们将任意两点间的可达距离作为权重，通过[Prim's algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)构建[minimum spanning tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree)。
+
+{%include /post_include/logic_of_clustering/hdbscan_tree.png %}
 
 
 
