@@ -2,7 +2,7 @@
 layout: post
 title: "聚类的逻辑"
 author: "Xinghao Gu"
-date: "March 15, 2021"
+date: "March 29, 2021"
 categories: Statistics
 permalink: "/blogs/Logic-of-Clustering/"
 ---
@@ -31,11 +31,19 @@ mutual_reachability_distance(a, b) = max(
     distance(a, b)
 )
 ```
-现在我们将任意两点间的可达距离作为权重，通过[Prim's algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)构建[minimum spanning tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree)。
+可以想象，可达距离的算法会将相距较近的点推远，这会让我们的聚类结果更加稳定（robust）。现在我们将任意两点间的可达距离作为权重，通过[Prim's algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)构建[minimum spanning tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree)。假设我们规定互相间可达距离小于d的点都被归为一个簇，那么当d为0，每一个点就自成一簇。而当d逐渐增大，我们得到的簇的数量就不断减少。依照这个逻辑，我们把minimum spanning tree转化为d和簇数的关系，就得到了下面的图：
 
 {%include /post_include/logic_of_clustering/hdbscan_tree.html %}
 
+我们需要对这棵树进行一点剪枝。考虑到一些样本点特别少的簇很可能只是噪音（noise），我们定义一个簇最小样本的参数N。凡是样本量小于N的簇我们就将其剪去，然后我们就得到了一个更清楚的图，注意这里我们把纵坐标变成了距离的倒数lambda：
 
+{%include /post_include/logic_of_clustering/hdbscan_simple_tree.html %}
+
+显然，在这个图上的任何位置画一条水平线，我们就得到了一组聚类结果，现在只剩下[最后的问题](https://baike.baidu.com/item/%E6%9C%80%E5%90%8E%E7%9A%84%E9%97%AE%E9%A2%98/18377719)：如何选取最优的聚类结果。这里我不对数学部分再做赘述（详情可见文末参考文献），仅以上图为例给出一种简化的理解方式：当子簇面积之和大于父簇，则将子簇当成不同的簇，反之则认为它们都属于父簇。上图圈出的三个区域即我们最终选择的最优聚类结果。
+
+HDBSCAN是一种集Density based算法和Hierarchical based算法于一体的聚类算法，在面对不同分布类型的数据时都能以一个较快的速度给出一个较好的聚类结果：聚类形状灵活多样，无需人为设定簇数，对噪音不敏感。当然，如上文提到的，我们依旧需要人为设定簇最小样本量N和定义可达距离的最小点参数m，但相对来说这两个参数都足够intuitive。
+
+聚类的应用场景多种多样，除开本文谈及的算法，还有一类专用于图聚类的[Spectral Clustering](https://towardsdatascience.com/spectral-clustering-aba2640c0d5b)，篇幅所限这里就不展开了。
 
 
 
@@ -44,3 +52,4 @@ mutual_reachability_distance(a, b) = max(
 - [2] [The 5 Clustering Algorithms Data Scientists Need to Know](https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68)
 - [3] [Silhouette Analysis vs Elbow Method vs Davies-Bouldin Index: Selecting the optimal number of clusters for KMeans clustering](https://gdcoder.com/silhouette-analysis-vs-elbow-method-vs-davies-bouldin-index-selecting-the-optimal-number-of-clusters-for-kmeans-clustering/)
 - [4] [Understanding HDBSCAN and Density-Based Clustering](https://towardsdatascience.com/understanding-hdbscan-and-density-based-clustering-121dbee1320e)
+- [5] [Spectral Clustering](https://towardsdatascience.com/spectral-clustering-aba2640c0d5b)
