@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-This is Xinghao's homepage. You can know more about me from my [LinkedIn page](https://www.linkedin.com/in/xinghaogu/) and [Github page](https://github.com/crazywooooorm). This blog is about data science, business, Chinese history and random thoughts from my life.  
+This is Xinghao's homepage. You can know more about me from my [LinkedIn page](https://www.linkedin.com/in/xinghaogu/) and [Github page](https://github.com/crazywooooorm). This blog is about Statistics, business, and some random thoughts from my life.  
 
-我是顾星昊。在这个博客更新之初，我致力于发表一些和我专业有关的想法，后来发现我的专业远不能涵盖我对生活的看法，因此现在这里以我的生活和个人思考为主。我的业余时间大部分投入在看书，了解未知领域和跑步上，常常面临的矛盾是我旺盛的好奇心和我有限的时间。今天我们有很多新奇的领域在蓬勃发展，我希望自己可以摆脱傲慢的偏见和人云亦云的盲从，去发现真正的价值所在。作为一个热血青年，最后引用鲁迅先生的一段话以自勉：
-
-> 愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光，就令萤火一般，也可以在黑暗里发一点光，不必等候炬火。此后如竟没有炬火：我便是唯一的光。
+我是顾星昊。我在大学和研究生阶段的专业是经济学和统计学，从事的职业亦和数据息息相关，这使我惯于以量化的方式来看待世界。业余时间我喜欢看各种各样的书，因此我对文字的偏爱甚于其它媒介。我的博客记录我的一些看法和感悟。人往往难以摆脱偏见和盲从，但我会尽量保持独立思考。未来悬而未决，我们拭目以待。
