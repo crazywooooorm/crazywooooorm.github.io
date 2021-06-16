@@ -28,7 +28,7 @@ f(x0) = f(x0) + f'(x0) * (x - x0) = -lg(x0) - 1/x * (x - x0)
 
 由上述推导可知，Entropy在1/2时大约是Gini的两倍，而在1时二者基本相等，将两个函数画出来就可以看到这种关系的存在。
 
-![gini vs entropy](https://github.com/crazywooooorm/crazywooooorm.github.io/blob/master/_includes/post_include/story_of_tree/gini_vs_entropy.png)
+![gini vs entropy](/_includes/post_include/story_of_tree/gini_vs_entropy.png)
 
 决策树在实际应用中较少以单棵树的形式出现，一方面不加以剪枝的决策树极易过拟合，而剪枝后的单棵树往往精度感人(weak learner)，但也正因为其对参数（比如树的深度）和数据（不同样本或特征）的敏感性，恰恰非常适合拿来与集成学习(ensemble learning)搭配使用。
 
